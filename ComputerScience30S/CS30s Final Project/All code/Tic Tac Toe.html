@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TicTacToe.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #404040; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.ST1 {font-family: monospace; font-weight: bold}
+.ST8 {background-color: #dfdfdf; font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.guarded {background-color: #dfdfdf}
+.ST6 {color: #969696; background-color: #dfdfdf}
+.ST5 {font-family: monospace; font-weight: bold; font-style: italic}
+.ST4 {font-family: monospace; font-style: italic}
+.ST12 {background-color: #dfdfdf; font-family: monospace; font-style: italic}
+.literal {color: #336bdd}
+.ST7 {color: #336bdd; background-color: #dfdfdf}
+.ST2 {color: #ce54b8; font-family: monospace; font-style: italic}
+.ST10 {color: #ce54b8; background-color: #dfdfdf; font-family: monospace; font-style: italic}
+.ST3 {color: #ce54b8}
+.ST9 {color: #ce54b8; background-color: #dfdfdf}
+.string {color: #1e9347}
+.ST11 {color: #1e9347; background-color: #dfdfdf}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">C:\Users\m.galinsky\Desktop\BasicGridGame\src\TicTacToe\TicTacToe.java</td></tr></table>
+<pre>
+  1 <span class="literal">package</span> TicTacToe;
+  2 
+  3 <span class="literal">import</span> java.awt.Color;
+  4 <span class="literal">import</span> java.awt.Image;
+  5 <span class="literal">import</span> javax.swing.Icon;
+  6 <span class="literal">import</span> javax.swing.ImageIcon;
+  7 <span class="literal">import</span> javax.swing.JLabel;
+  8 <span class="literal">import</span> javax.swing.JOptionPane;
+  9 
+ 10 <span class="comment">/**</span>
+ 11 <span class="comment"> * </span><span class="ST0">The</span> <span class="ST0">Main</span> <span class="ST0">Tic</span> <span class="ST0">tac</span> <span class="ST0">toe</span> <span class="ST0">class</span>
+ 12 <span class="comment"> *</span>
+ 13 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">m</span><span class="comment">.</span><span class="comment">galinsky</span>
+ 14  <span class="comment">*/</span>
+ 15 <span class="literal">public</span> <span class="literal">class</span> <span class="ST1">TicTacToe</span> <span class="literal">extends</span> javax.swing.JFrame {
+ 16 
+ 17     <span class="literal">static</span> <span class="literal">int</span> <span class="ST2">count</span> = 0;
+ 18     <span class="literal">static</span> <span class="literal">final</span> String <span class="ST2">ROWX</span> = Globals.<span class="ST2">Xn</span> + <span class="string">&quot;</span><span class="string"> wins at row </span><span class="string">&quot;</span>;
+ 19     <span class="literal">static</span> <span class="literal">final</span> String <span class="ST2">ROWO</span> = Globals.<span class="ST2">On</span> + <span class="string">&quot;</span><span class="string"> wins at row </span><span class="string">&quot;</span>;
+ 20     <span class="literal">static</span> <span class="literal">final</span> String <span class="ST2">COLUMNX</span> = Globals.<span class="ST2">Xn</span> + <span class="string">&quot;</span><span class="string"> wins at column </span><span class="string">&quot;</span>;
+ 21     <span class="literal">static</span> <span class="literal">final</span> String <span class="ST2">COLUMNO</span> = Globals.<span class="ST2">On</span> + <span class="string">&quot;</span><span class="string"> wins at column </span><span class="string">&quot;</span>;
+ 22     <span class="literal">static</span> <span class="literal">final</span> String <span class="ST2">DIAGONALX</span> = Globals.<span class="ST2">Xn</span> + <span class="string">&quot;</span><span class="string"> wins in the diagonal</span><span class="string">&quot;</span>;
+ 23     <span class="literal">static</span> <span class="literal">final</span> String <span class="ST2">DIAGONALO</span> = Globals.<span class="ST2">On</span> + <span class="string">&quot;</span><span class="string"> wins in the diagonal</span><span class="string">&quot;</span>;
+ 24     <span class="literal">static</span> <span class="literal">final</span> String <span class="ST2">XLETTER</span> = Globals.<span class="ST2">Xl</span>;
+ 25     <span class="literal">static</span> <span class="literal">final</span> String <span class="ST2">OLETTER</span> = Globals.<span class="ST2">Ol</span>;
+ 26 
+ 27     <span class="comment">/**</span>
+ 28 <span class="comment">     * </span><span class="comment">Creates</span> <span class="comment">new</span> <span class="comment">form</span> <span class="comment">TicTacToe</span>
+ 29      <span class="comment">*/</span>
+ 30     <span class="literal">public</span> <span class="ST1">TicTacToe</span>() {
+ 31         initComponents();
+ 32 
+ 33         <span class="ST3">matrix</span>[0][0] = <span class="ST3">cellLabel00</span>;
+ 34         <span class="ST3">matrix</span>[0][1] = <span class="ST3">cellLabel01</span>;
+ 35         <span class="ST3">matrix</span>[0][2] = <span class="ST3">cellLabel02</span>;
+ 36 
+ 37         <span class="ST3">matrix</span>[1][0] = <span class="ST3">cellLabel10</span>;
+ 38         <span class="ST3">matrix</span>[1][1] = <span class="ST3">cellLabel11</span>;
+ 39         <span class="ST3">matrix</span>[1][2] = <span class="ST3">cellLabel12</span>;
+ 40 
+ 41         <span class="ST3">matrix</span>[2][0] = <span class="ST3">cellLabel20</span>;
+ 42         <span class="ST3">matrix</span>[2][1] = <span class="ST3">cellLabel21</span>;
+ 43         <span class="ST3">matrix</span>[2][2] = <span class="ST3">cellLabel22</span>;
+ 44 
+ 45         Image image = <span class="literal">new</span> ImageIcon(getClass().getResource(<span class="string">&quot;</span><span class="string">/TicTacToe/tic-tac-toe.png</span><span class="string">&quot;</span>)).getImage();
+ 46 
+ 47         <span class="literal">this</span>.setIconImage(image);
+ 48 
+ 49         <span class="literal">this</span>.setResizable(<span class="literal">f</span><span class="literal">alse</span>);
+ 50 
+ 51         <span class="literal">for</span> (<span class="literal">int</span> row = 0; row &lt; 3; row++) {
+ 52             <span class="literal">for</span> (<span class="literal">int</span> column = 0; column &lt; 3; column++) {
+ 53                 <span class="literal">final</span> <span class="literal">int</span> ROW = row;
+ 54                 <span class="literal">final</span> <span class="literal">int</span> COLUMN = column;
+ 55                 <span class="ST3">matrix</span>[row][column].addMouseListener(<span class="literal">new</span> java.awt.event.MouseAdapter() {
+ 56                     <span class="literal">public</span> <span class="literal">void</span> <span class="ST1">mouseClicked</span>(java.awt.event.MouseEvent evt) {
+ 57                         clickMouse(ROW, COLUMN);
+ 58                     }
+ 59                 });
+ 60             }
+ 61         }
+ 62         <span class="literal">this</span>.setSize(286, 279);
+ 63         <span class="literal">this</span>.setLocationRelativeTo(<span class="literal">n</span><span class="literal">ull</span>);
+ 64         <span class="literal">this</span>.setVisible(<span class="literal">t</span><span class="literal">rue</span>);
+ 65     }
+ 66 
+ 67     <span class="comment">/**</span>
+ 68 <span class="comment">     * </span><span class="ST0">What</span> <span class="ST0">happens</span> <span class="ST0">when</span> <span class="ST0">a</span> <span class="ST0">user</span> <span class="ST0">clicks</span> <span class="ST0">on</span> <span class="ST0">a</span> <span class="ST0">square</span><span class="ST0"> (</span><span class="ST0">in</span> <span class="ST0">the</span> <span class="ST0">code</span><span class="comment">)</span>
+ 69 <span class="comment">     *</span>
+ 70 <span class="comment">     * </span><span class="ST0">@param</span> row <span class="comment">the</span> <span class="comment">row</span> <span class="comment">that</span> <span class="comment">the</span> <span class="comment">square</span> <span class="comment">is</span> <span class="comment">in</span>
+ 71 <span class="comment">     * </span><span class="ST0">@param</span> column <span class="comment">the</span> <span class="comment">column</span> <span class="comment">that</span> <span class="comment">the</span> <span class="comment">square</span> <span class="comment">is</span> <span class="comment">in</span>
+ 72      <span class="comment">*/</span>
+ 73     <span class="literal">private</span> <span class="literal">void</span> <span class="ST1">clickMouse</span>(<span class="literal">int</span> row, <span class="literal">int</span> column) {
+ 74         click(row, column);
+ 75         <span class="ST2">count</span>++;
+ 76         <span class="literal">if</span> (<span class="ST2">count</span> &gt;= 5) {
+ 77             String win = checkWin();
+ 78             <span class="literal">if</span> (!win.equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+ 79                 JOptionPane.<span class="ST4">showMessageDialog</span>(<span class="literal">n</span><span class="literal">ull</span>, win);
+ 80                 <span class="literal">if</span> (<span class="ST4">playAgain</span>() == <span class="literal">true</span>) {
+ 81                     <span class="literal">this</span>.dispose();
+ 82                     <span class="ST2">count</span> = 0;
+ 83                     TicTacToe ticTacToe = <span class="literal">new</span> TicTacToe();
+ 84                 } <span class="literal">else</span> {
+ 85                     JOptionPane.<span class="ST4">showMessageDialog</span>(
+ 86                             <span class="literal">n</span><span class="literal">ull</span>,
+ 87                             <span class="string">&quot;</span><span class="string">Thanks for playing TicTacToe</span><span class="string">&quot;</span>,
+ 88                             Globals.<span class="ST2">title</span>,
+ 89                             JOptionPane.<span class="ST2">PLAIN_MESSAGE</span>
+ 90                     );
+ 91                     System.<span class="ST4">exit</span>(0);
+ 92                 }
+ 93             } <span class="literal">else</span> <span class="literal">if</span> (win.equals(<span class="string">&quot;</span><span class="string">&quot;</span>) &amp;&amp; <span class="ST2">count</span> == 9) {
+ 94                 JOptionPane.<span class="ST4">showMessageDialog</span>(<span class="literal">n</span><span class="literal">ull</span>, <span class="string">&quot;</span><span class="string">It&#39;s a tie!</span><span class="string">&quot;</span>);
+ 95                 <span class="literal">if</span> (<span class="ST4">playAgain</span>() == <span class="literal">true</span>) {
+ 96                     <span class="literal">this</span>.dispose();
+ 97                     <span class="ST2">count</span> = 0;
+ 98                     TicTacToe ticTacToe = <span class="literal">new</span> TicTacToe();
+ 99                 } <span class="literal">else</span> {
+100                     JOptionPane.<span class="ST4">showMessageDialog</span>(
+101                             <span class="literal">n</span><span class="literal">ull</span>,
+102                             <span class="string">&quot;</span><span class="string">Thanks for playing TicTacToe</span><span class="string">&quot;</span>,
+103                             Globals.<span class="ST2">title</span>,
+104                             JOptionPane.<span class="ST2">PLAIN_MESSAGE</span>
+105                     );
+106                     System.<span class="ST4">exit</span>(0);
+107                 }
+108             }
+109         }
+110     }
+111 
+112     <span class="comment">/**</span>
+113 <span class="comment">     * </span><span class="ST0">Displays</span> <span class="ST0">a</span> <span class="ST0">message</span> <span class="ST0">to</span> <span class="ST0">the</span> <span class="ST0">user</span> <span class="ST0">to</span> <span class="ST0">see</span> <span class="ST0">if</span> <span class="ST0">they</span> <span class="ST0">want</span> <span class="ST0">to</span> <span class="ST0">continue</span> <span class="ST0">playing</span>
+114 <span class="comment">     *</span>
+115 <span class="comment">     * </span><span class="ST0">@return</span> <span class="comment">true</span><span class="comment"> (</span><span class="comment">yes</span><span class="comment">), </span><span class="comment">false</span><span class="comment"> (</span><span class="comment">no</span><span class="comment">)</span>
+116      <span class="comment">*/</span>
+117     <span class="literal">private</span> <span class="literal">static</span> <span class="literal">boolean</span> <span class="ST5">playAgain</span>() {
+118         <span class="literal">return</span> <span class="ST4">yesNo</span>(<span class="string">&quot;</span><span class="string">Do you want to play again?</span><span class="string">&quot;</span>);
+119     }
+120 
+121     <span class="comment">/**</span>
+122 <span class="comment">     * </span><span class="ST0">Ask</span> <span class="ST0">the</span> <span class="ST0">user</span> <span class="ST0">a</span> <span class="ST0">yes</span> <span class="ST0">and</span> <span class="ST0">no</span> <span class="ST0">question</span><span class="ST0">, </span><span class="ST0">in</span> <span class="ST0">a</span> <span class="ST0">confirm</span> <span class="ST0">dialog</span> <span class="ST0">box</span>
+123 <span class="comment">     *</span>
+124 <span class="comment">     * </span><span class="ST0">@param</span> text <span class="comment">the</span> <span class="comment">yes</span> <span class="comment">no</span> <span class="comment">question</span> <span class="comment">to</span> <span class="comment">ask</span> <span class="comment">in</span> <span class="comment">the</span> <span class="comment">dialog</span>
+125 <span class="comment">     * </span><span class="ST0">@return</span> <span class="comment">true</span><span class="comment"> (</span><span class="comment">yes</span><span class="comment">), </span><span class="comment">false</span><span class="comment"> (</span><span class="comment">no</span><span class="comment">)</span>
+126      <span class="comment">*/</span>
+127     <span class="literal">private</span> <span class="literal">static</span> <span class="literal">boolean</span> <span class="ST5">yesNo</span>(String text) {
+128         <span class="literal">int</span> response = JOptionPane.<span class="ST4">showConfirmDialog</span>(<span class="literal">n</span><span class="literal">ull</span>, text, Globals.<span class="ST2">title</span>,
+129                 JOptionPane.<span class="ST2">YES_NO_OPTION</span>, JOptionPane.<span class="ST2">QUESTION_MESSAGE</span>);
+130         <span class="literal">if</span> (response == JOptionPane.<span class="ST2">YES_OPTION</span>) {
+131             <span class="literal">return</span> <span class="literal">true</span>;
+132         } <span class="literal">else</span> {
+133             <span class="literal">return</span> <span class="literal">false</span>;
+134         }
+135     }
+136 
+137     <span class="comment">/**</span>
+138 <span class="comment">     * </span><span class="ST0">This</span> <span class="ST0">is</span> <span class="ST0">what</span> <span class="ST0">happens</span> <span class="ST0">when</span> <span class="ST0">the</span> <span class="ST0">user</span> <span class="ST0">clicks</span> <span class="ST0">on</span> <span class="ST0">a</span> <span class="ST0">label</span><span class="ST0"> (</span><span class="ST0">user</span> <span class="ST0">interface</span><span class="comment">)</span>
+139 <span class="comment">     *</span>
+140 <span class="comment">     * </span><span class="ST0">@param</span> row <span class="comment">what</span> <span class="comment">row</span> <span class="comment">the</span> <span class="comment">label</span> <span class="comment">is</span> <span class="comment">in</span>
+141 <span class="comment">     * </span><span class="ST0">@param</span> column <span class="comment">what</span> <span class="comment">column</span> <span class="comment">the</span> <span class="comment">label</span> <span class="comment">is</span> <span class="comment">in</span>
+142      <span class="comment">*/</span>
+143     <span class="literal">private</span> <span class="literal">void</span> <span class="ST1">click</span>(<span class="literal">int</span> row, <span class="literal">int</span> column) {
+144         <span class="literal">if</span> (<span class="ST2">count</span> % 2 == 0 &amp;&amp; <span class="ST3">matrix</span>[row][column].getText().equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+145             <span class="ST3">matrix</span>[row][column].setText(Globals.<span class="ST2">Xl</span>);
+146             <span class="ST3">matrix</span>[row][column].setBackground(Color.<span class="ST2">blue</span>);
+147         } <span class="literal">else</span> <span class="literal">if</span> (<span class="ST2">count</span> % 2 != 0 &amp;&amp; <span class="ST3">matrix</span>[row][column].getText().equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+148             <span class="ST3">matrix</span>[row][column].setText(Globals.<span class="ST2">Ol</span>);
+149             <span class="ST3">matrix</span>[row][column].setBackground(Color.<span class="ST2">yellow</span>);
+150         } <span class="literal">else</span> {
+151             JOptionPane.<span class="ST4">showMessageDialog</span>(<span class="literal">n</span><span class="literal">ull</span>, <span class="string">&quot;</span><span class="string">You need to chose a different square</span><span class="string">&quot;</span>);
+152             <span class="ST2">count</span>--;
+153         }
+154     }
+155 
+156     <span class="comment">/**</span>
+157 <span class="comment">     * </span><span class="ST0">Checks</span> <span class="ST0">to</span> <span class="ST0">see</span> <span class="ST0">if</span> <span class="ST0">someone</span> <span class="ST0">won</span>
+158 <span class="comment">     *</span>
+159 <span class="comment">     * </span><span class="ST0">@return</span> <span class="comment">the</span> <span class="comment">player</span> <span class="comment">who</span> <span class="comment">won</span>
+160      <span class="comment">*/</span>
+161     <span class="literal">private</span> String <span class="ST1">checkWin</span>() {
+162         String text = <span class="string">&quot;&quot;</span>;
+163         <span class="literal">if</span> (text.equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+164             text = checkWinsGoingDown();
+165         }
+166         <span class="literal">if</span> (text.equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+167             text = checkWinsGoingAcross();
+168         }
+169         <span class="literal">if</span> (text.equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+170             text = checkWinsGoingDiagonally();
+171         }
+172         <span class="literal">return</span> text;
+173     }
+174 
+175     <span class="comment">/**</span>
+176 <span class="comment">     * </span><span class="ST0">Checks</span> <span class="ST0">to</span> <span class="ST0">see</span> <span class="ST0">if</span> <span class="ST0">a</span> <span class="ST0">player</span> <span class="ST0">won</span> <span class="ST0">diagonally</span>
+177 <span class="comment">     *</span>
+178 <span class="comment">     * </span><span class="ST0">@return</span> <span class="comment">the</span> <span class="comment">player</span> <span class="comment">who</span> <span class="comment">won</span>
+179      <span class="comment">*/</span>
+180     <span class="literal">private</span> String <span class="ST1">checkWinsGoingDiagonally</span>() {
+181         String text = <span class="string">&quot;&quot;</span>;
+182         <span class="comment">// Loops through the diagonals</span>
+183         <span class="literal">if</span> (<span class="ST3">matrix</span>[0][0].getText().equals(Globals.<span class="ST2">Xl</span>)
+184                 &amp;&amp; <span class="ST3">matrix</span>[1][1].getText().equals(Globals.<span class="ST2">Xl</span>)
+185                 &amp;&amp; <span class="ST3">matrix</span>[2][2].getText().equals(Globals.<span class="ST2">Xl</span>)) {
+186             text = <span class="ST2">DIAGONALX</span>;
+187             <span class="literal">return</span> text;
+188         } <span class="literal">else</span> <span class="literal">if</span> (<span class="ST3">matrix</span>[0][2].getText().equals(Globals.<span class="ST2">Xl</span>)
+189                 &amp;&amp; <span class="ST3">matrix</span>[1][1].getText().equals(Globals.<span class="ST2">Xl</span>)
+190                 &amp;&amp; <span class="ST3">matrix</span>[2][0].getText().equals(Globals.<span class="ST2">Xl</span>)) {
+191             text = <span class="ST2">DIAGONALX</span>;
+192             <span class="literal">return</span> text;
+193         }
+194         <span class="literal">if</span> (<span class="ST3">matrix</span>[0][0].getText().equals(Globals.<span class="ST2">Ol</span>)
+195                 &amp;&amp; <span class="ST3">matrix</span>[1][1].getText().equals(Globals.<span class="ST2">Ol</span>)
+196                 &amp;&amp; <span class="ST3">matrix</span>[2][2].getText().equals(Globals.<span class="ST2">Ol</span>)) {
+197             text = <span class="ST2">DIAGONALO</span>;
+198             <span class="literal">return</span> text;
+199         } <span class="literal">else</span> <span class="literal">if</span> (<span class="ST3">matrix</span>[0][2].getText().equals(Globals.<span class="ST2">Ol</span>)
+200                 &amp;&amp; <span class="ST3">matrix</span>[1][1].getText().equals(Globals.<span class="ST2">Ol</span>)
+201                 &amp;&amp; <span class="ST3">matrix</span>[2][0].getText().equals(Globals.<span class="ST2">Ol</span>)) {
+202             text = <span class="ST2">DIAGONALO</span>;
+203             <span class="literal">return</span> text;
+204         }
+205         <span class="literal">return</span> text;
+206     }
+207 
+208     <span class="comment">/**</span>
+209 <span class="comment">     * </span><span class="ST0">Checks</span> <span class="ST0">to</span> <span class="ST0">see</span> <span class="ST0">if</span> <span class="ST0">a</span> <span class="ST0">player</span> <span class="ST0">won</span> <span class="ST0">going</span> <span class="ST0">across</span>
+210 <span class="comment">     *</span>
+211 <span class="comment">     * </span><span class="ST0">@return</span> <span class="comment">the</span> <span class="comment">player</span> <span class="comment">who</span> <span class="comment">won</span>
+212      <span class="comment">*/</span>
+213     <span class="literal">private</span> String <span class="ST1">checkWinsGoingAcross</span>() {
+214         String text = <span class="string">&quot;&quot;</span>;
+215         <span class="comment">// Loops through the rows</span>
+216         <span class="literal">for</span> (<span class="literal">int</span> row = 0; row &lt; 3; row++) {
+217             <span class="literal">if</span> (<span class="ST3">matrix</span>[row][0].getText().equals(Globals.<span class="ST2">Xl</span>)
+218                     &amp;&amp; <span class="ST3">matrix</span>[row][1].getText().equals(Globals.<span class="ST2">Xl</span>)
+219                     &amp;&amp; <span class="ST3">matrix</span>[row][2].getText().equals(Globals.<span class="ST2">Xl</span>)) {
+220                 text = <span class="ST2">ROWX</span> + row;
+221                 <span class="literal">return</span> text;
+222             } <span class="literal">else</span> <span class="literal">if</span> (<span class="ST3">matrix</span>[row][0].getText().equals(Globals.<span class="ST2">Ol</span>)
+223                     &amp;&amp; <span class="ST3">matrix</span>[row][1].getText().equals(Globals.<span class="ST2">Ol</span>)
+224                     &amp;&amp; <span class="ST3">matrix</span>[row][2].getText().equals(Globals.<span class="ST2">Ol</span>)) {
+225                 text = <span class="ST2">ROWO</span> + row;
+226                 <span class="literal">return</span> text;
+227             }
+228         }
+229         <span class="literal">return</span> text;
+230     }
+231 
+232     <span class="comment">/**</span>
+233 <span class="comment">     * </span><span class="ST0">Checks</span> <span class="ST0">to</span> <span class="ST0">see</span> <span class="ST0">if</span> <span class="ST0">someone</span> <span class="ST0">won</span> <span class="ST0">going</span> <span class="ST0">down</span>
+234 <span class="comment">     *</span>
+235 <span class="comment">     * </span><span class="ST0">@return</span> <span class="comment">the</span> <span class="comment">player</span> <span class="comment">who</span> <span class="comment">won</span>
+236      <span class="comment">*/</span>
+237     <span class="literal">private</span> String <span class="ST1">checkWinsGoingDown</span>() {
+238         String text = <span class="string">&quot;&quot;</span>;
+239         <span class="comment">// Loops through the columns</span>
+240         <span class="literal">for</span> (<span class="literal">int</span> column = 0; column &lt; 3; column++) {
+241             <span class="literal">if</span> (<span class="ST3">matrix</span>[0][column].getText().equals(Globals.<span class="ST2">Xl</span>)
+242                     &amp;&amp; <span class="ST3">matrix</span>[1][column].getText().equals(Globals.<span class="ST2">Xl</span>)
+243                     &amp;&amp; <span class="ST3">matrix</span>[2][column].getText().equals(Globals.<span class="ST2">Xl</span>)) {
+244                 text = <span class="ST2">COLUMNX</span> + column;
+245                 <span class="literal">return</span> text;
+246             } <span class="literal">else</span> <span class="literal">if</span> (<span class="ST3">matrix</span>[0][column].getText().equals(Globals.<span class="ST2">Ol</span>)
+247                     &amp;&amp; <span class="ST3">matrix</span>[1][column].getText().equals(Globals.<span class="ST2">Ol</span>)
+248                     &amp;&amp; <span class="ST3">matrix</span>[2][column].getText().equals(Globals.<span class="ST2">Ol</span>)) {
+249                 text = <span class="ST2">COLUMNO</span> + column;
+250                 <span class="literal">return</span> text;
+251             }
+252         }
+253         <span class="literal">return</span> text;
+254     }
+255 
+256     <span class="comment">/**</span>
+257 <span class="comment">     * </span><span class="ST0">This</span> <span class="ST0">method</span> <span class="ST0">is</span> <span class="ST0">called</span> <span class="ST0">from</span> <span class="ST0">within</span> <span class="ST0">the</span> <span class="ST0">constructor</span> <span class="ST0">to</span> <span class="ST0">initialize</span> <span class="ST0">the</span> <span class="ST0">form</span><span class="ST0">.</span>
+258 <span class="comment">     * </span><span class="comment">WARNING</span><span class="comment">: </span><span class="comment">Do</span> <span class="comment">NOT</span> <span class="comment">modify</span> <span class="comment">this</span> <span class="comment">code</span><span class="comment">.</span> <span class="comment">The</span> <span class="comment">content</span> <span class="comment">of</span> <span class="comment">this</span> <span class="comment">method</span> <span class="comment">is</span> <span class="comment">always</span>
+259 <span class="comment">     * </span><span class="comment">regenerated</span> <span class="comment">by</span> <span class="comment">the</span> <span class="comment">Form</span> <span class="comment">Editor</span><span class="comment">.</span>
+260      <span class="comment">*/</span>
+261     @SuppressWarnings(<span class="string">&quot;</span><span class="string">unchecked</span><span class="string">&quot;</span>)
+262     <span class="ST6">// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;                          </span>
+263     <span class="ST7">private</span> <span class="ST7">void</span> <span class="ST8">initComponents</span><span class="guarded">(</span><span class="guarded">)</span> <span class="guarded">{</span>
+264 
+265         <span class="ST9">cellLabel00</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+266         <span class="ST9">cellLabel01</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+267         <span class="ST9">cellLabel02</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+268         <span class="ST9">cellLabel10</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+269         <span class="ST9">cellLabel11</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+270         <span class="ST9">cellLabel12</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+271         <span class="ST9">cellLabel20</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+272         <span class="ST9">cellLabel21</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+273         <span class="ST9">cellLabel22</span> <span class="guarded">=</span> <span class="ST7">new</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+274 
+275         <span class="guarded">setDefaultCloseOperation</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">WindowConstants</span><span class="guarded">.</span><span class="ST10">EXIT_ON_CLOSE</span><span class="guarded">)</span><span class="guarded">;</span>
+276         <span class="guarded">setTitle</span><span class="guarded">(</span><span class="ST11">&quot;</span><span class="ST11">Tic Tac Toe</span><span class="ST11">&quot;</span><span class="guarded">)</span><span class="guarded">;</span>
+277         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">setLayout</span><span class="guarded">(</span><span class="ST7">n</span><span class="ST7">ull</span><span class="guarded">)</span><span class="guarded">;</span>
+278 
+279         <span class="ST9">cellLabel00</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+280         <span class="ST9">cellLabel00</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+281         <span class="ST9">cellLabel00</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+282         <span class="ST9">cellLabel00</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+283         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel00</span><span class="guarded">)</span><span class="guarded">;</span>
+284         <span class="ST9">cellLabel00</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+285 
+286         <span class="ST9">cellLabel01</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+287         <span class="ST9">cellLabel01</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+288         <span class="ST9">cellLabel01</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+289         <span class="ST9">cellLabel01</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+290         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel01</span><span class="guarded">)</span><span class="guarded">;</span>
+291         <span class="ST9">cellLabel01</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+292 
+293         <span class="ST9">cellLabel02</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+294         <span class="ST9">cellLabel02</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+295         <span class="ST9">cellLabel02</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+296         <span class="ST9">cellLabel02</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+297         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel02</span><span class="guarded">)</span><span class="guarded">;</span>
+298         <span class="ST9">cellLabel02</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">1</span><span class="guarded">80</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+299 
+300         <span class="ST9">cellLabel10</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+301         <span class="ST9">cellLabel10</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+302         <span class="ST9">cellLabel10</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+303         <span class="ST9">cellLabel10</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+304         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel10</span><span class="guarded">)</span><span class="guarded">;</span>
+305         <span class="ST9">cellLabel10</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+306 
+307         <span class="ST9">cellLabel11</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+308         <span class="ST9">cellLabel11</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+309         <span class="ST9">cellLabel11</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+310         <span class="ST9">cellLabel11</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+311         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel11</span><span class="guarded">)</span><span class="guarded">;</span>
+312         <span class="ST9">cellLabel11</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+313 
+314         <span class="ST9">cellLabel12</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+315         <span class="ST9">cellLabel12</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+316         <span class="ST9">cellLabel12</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+317         <span class="ST9">cellLabel12</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+318         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel12</span><span class="guarded">)</span><span class="guarded">;</span>
+319         <span class="ST9">cellLabel12</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">1</span><span class="guarded">80</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+320 
+321         <span class="ST9">cellLabel20</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+322         <span class="ST9">cellLabel20</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+323         <span class="ST9">cellLabel20</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+324         <span class="ST9">cellLabel20</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+325         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel20</span><span class="guarded">)</span><span class="guarded">;</span>
+326         <span class="ST9">cellLabel20</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">1</span><span class="guarded">60</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+327 
+328         <span class="ST9">cellLabel21</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+329         <span class="ST9">cellLabel21</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+330         <span class="ST9">cellLabel21</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+331         <span class="ST9">cellLabel21</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+332         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel21</span><span class="guarded">)</span><span class="guarded">;</span>
+333         <span class="ST9">cellLabel21</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">1</span><span class="guarded">60</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+334 
+335         <span class="ST9">cellLabel22</span><span class="guarded">.</span><span class="guarded">setBackground</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">,</span> <span class="guarded">2</span><span class="guarded">55</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+336         <span class="ST9">cellLabel22</span><span class="guarded">.</span><span class="guarded">setHorizontalAlignment</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">SwingConstants</span><span class="guarded">.</span><span class="ST10">CENTER</span><span class="guarded">)</span><span class="guarded">;</span>
+337         <span class="ST9">cellLabel22</span><span class="guarded">.</span><span class="guarded">setBorder</span><span class="guarded">(</span><span class="guarded">j</span><span class="guarded">avax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">BorderFactory</span><span class="guarded">.</span><span class="ST12">createLineBorder</span><span class="guarded">(</span><span class="ST7">new</span> <span class="guarded">java</span><span class="guarded">.</span><span class="guarded">awt</span><span class="guarded">.</span><span class="guarded">Color</span><span class="guarded">(</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">0</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">)</span><span class="guarded">;</span>
+338         <span class="ST9">cellLabel22</span><span class="guarded">.</span><span class="guarded">setOpaque</span><span class="guarded">(</span><span class="ST7">t</span><span class="ST7">rue</span><span class="guarded">)</span><span class="guarded">;</span>
+339         <span class="guarded">getContentPane</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">.</span><span class="guarded">add</span><span class="guarded">(</span><span class="ST9">c</span><span class="ST9">ellLabel22</span><span class="guarded">)</span><span class="guarded">;</span>
+340         <span class="ST9">cellLabel22</span><span class="guarded">.</span><span class="guarded">setBounds</span><span class="guarded">(</span><span class="guarded">1</span><span class="guarded">80</span><span class="guarded">,</span> <span class="guarded">1</span><span class="guarded">60</span><span class="guarded">,</span> <span class="guarded">9</span><span class="guarded">0</span><span class="guarded">,</span> <span class="guarded">8</span><span class="guarded">0</span><span class="guarded">)</span><span class="guarded">;</span>
+341 
+342         <span class="guarded">pack</span><span class="guarded">(</span><span class="guarded">)</span><span class="guarded">;</span>
+343     <span class="guarded">}</span><span class="ST6">// &lt;/editor-fold&gt;                        </span>
+344 
+345     <span class="ST6">// Variables declaration - do not modify                     </span>
+346     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel00</span><span class="guarded">;</span>
+347     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel01</span><span class="guarded">;</span>
+348     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel02</span><span class="guarded">;</span>
+349     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel10</span><span class="guarded">;</span>
+350     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel11</span><span class="guarded">;</span>
+351     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel12</span><span class="guarded">;</span>
+352     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel20</span><span class="guarded">;</span>
+353     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel21</span><span class="guarded">;</span>
+354     <span class="ST7">private</span> <span class="guarded">javax</span><span class="guarded">.</span><span class="guarded">swing</span><span class="guarded">.</span><span class="guarded">JLabel</span> <span class="ST9">cellLabel22</span><span class="guarded">;</span>
+355     <span class="ST6">// End of variables declaration                   </span>
+356 
+357     <span class="literal">final</span> <span class="literal">int</span> <span class="ST3">ROWS</span> = 3;
+358     <span class="literal">final</span> <span class="literal">int</span> <span class="ST3">COLUMNS</span> = 3;
+359 
+360     JLabel[][] <span class="ST3">matrix</span> = <span class="literal">new</span> JLabel[<span class="ST3">ROWS</span>][<span class="ST3">COLUMNS</span>];
+361 
+362 }
+363 
+</pre></body>
+</html>

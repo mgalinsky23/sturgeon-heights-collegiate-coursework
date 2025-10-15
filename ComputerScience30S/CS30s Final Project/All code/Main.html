@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>NewMain.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #404040; background-color: #e9e8e2; font-family: monospace}
+.ST0 {color: #969696; font-family: monospace; font-weight: bold}
+.ST1 {font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.ST2 {font-family: monospace; font-weight: bold; font-style: italic}
+.ST3 {font-family: monospace; font-style: italic}
+.ST4 {color: #ce54b8; font-family: monospace; font-style: italic}
+.string {color: #1e9347}
+.literal {color: #336bdd}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">C:\Users\m.galinsky\Desktop\BasicGridGame\src\TicTacToe\NewMain.java</td></tr></table>
+<pre>
+  1 <span class="comment">/**</span> <span class="comment">Required</span> <span class="comment">package</span> <span class="comment">class</span> <span class="comment">namespace</span> <span class="comment">*/</span>
+  2 <span class="literal">package</span> TicTacToe;
+  3 
+  4 <span class="literal">import</span> javax.swing.JOptionPane;
+  5 
+  6 <span class="comment">/**</span>
+  7 <span class="comment"> * </span><span class="ST0">NewMain</span><span class="ST0"> - </span><span class="ST0">the</span><span class="ST0"> &#39;</span><span class="ST0">opening</span><span class="ST0">&#39; </span><span class="ST0">class</span>
+  8 <span class="comment"> *</span>
+  9 <span class="comment"> * </span><span class="ST0">@author</span> <span class="comment">Michelle</span> <span class="comment">Galinsky</span>
+ 10 <span class="comment"> * </span><span class="ST0">@since</span> <span class="comment">Jan</span><span class="comment"> 10, 2024</span>
+ 11  <span class="comment">*/</span>
+ 12 <span class="literal">public</span> <span class="literal">class</span> <span class="ST1">NewMain</span> {
+ 13 
+ 14     <span class="comment">/**</span>
+ 15 <span class="comment">     *</span>
+ 16 <span class="comment">     * </span><span class="ST0">@param</span> args <span class="comment">the</span> <span class="comment">command</span> <span class="comment">line</span> <span class="comment">arguments</span>
+ 17      <span class="comment">*/</span>
+ 18     <span class="literal">public</span> <span class="literal">static</span> <span class="literal">void</span> <span class="ST2">main</span>(String[] args) {
+ 19         <span class="literal">int</span> countN = 0;
+ 20 
+ 21         JOptionPane.<span class="ST3">showMessageDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 22                 <span class="string">&quot;</span><span class="string">Welcome to Tic Tac Toe</span><span class="string">&quot;</span>,
+ 23                 Globals.<span class="ST4">title</span>,
+ 24                 JOptionPane.<span class="ST4">PLAIN_MESSAGE</span>);
+ 25 
+ 26         <span class="ST3">namesX</span>();
+ 27         <span class="ST3">namesO</span>();
+ 28 
+ 29         TicTacToe ticTacToe = <span class="literal">new</span> TicTacToe();
+ 30     }
+ 31 
+ 32     <span class="comment">/**</span>
+ 33 <span class="comment">     * </span><span class="comment">Asks</span> <span class="comment">the</span> <span class="comment">user</span> <span class="comment">for</span> <span class="comment">their</span> <span class="comment">name</span> <span class="comment">and</span> <span class="comment">a</span> <span class="comment">letter</span>
+ 34      <span class="comment">*/</span>
+ 35     <span class="literal">private</span> <span class="literal">static</span> <span class="literal">void</span> <span class="ST2">namesX</span>() {
+ 36         Globals.<span class="ST4">Xn</span> = JOptionPane.<span class="ST3">showInputDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 37                 <span class="string">&quot;</span><span class="string">Player &#39;X&#39; please enter your name:</span><span class="string">&quot;</span>,
+ 38                 Globals.<span class="ST4">title</span>,
+ 39                 JOptionPane.<span class="ST4">INFORMATION_MESSAGE</span>);
+ 40 
+ 41         <span class="literal">if</span> (Globals.<span class="ST4">Xn</span>.equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+ 42             JOptionPane.<span class="ST3">showMessageDialog</span>(<span class="literal">n</span><span class="literal">ull</span>, <span class="string">&quot;</span><span class="string">You need to enter a name</span><span class="string">&quot;</span>);
+ 43 
+ 44             Globals.<span class="ST4">Xn</span> = JOptionPane.<span class="ST3">showInputDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 45                     <span class="string">&quot;</span><span class="string">Player &#39;X&#39; please enter your name:</span><span class="string">&quot;</span>,
+ 46                     Globals.<span class="ST4">title</span>,
+ 47                     JOptionPane.<span class="ST4">INFORMATION_MESSAGE</span>);
+ 48         }
+ 49 
+ 50         Globals.<span class="ST4">Xl</span> = JOptionPane.<span class="ST3">showInputDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 51                 Globals.<span class="ST4">Xn</span> + <span class="string">&quot;</span><span class="string"> please enter your letter:</span><span class="string">&quot;</span>,
+ 52                 Globals.<span class="ST4">title</span>,
+ 53                 JOptionPane.<span class="ST4">INFORMATION_MESSAGE</span>);
+ 54 
+ 55         <span class="literal">if</span> (Globals.<span class="ST4">Xl</span>.equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+ 56             JOptionPane.<span class="ST3">showMessageDialog</span>(<span class="literal">n</span><span class="literal">ull</span>, <span class="string">&quot;</span><span class="string">You need to enter a letter</span><span class="string">&quot;</span>);
+ 57 
+ 58             Globals.<span class="ST4">Xn</span> = JOptionPane.<span class="ST3">showInputDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 59                     Globals.<span class="ST4">Xn</span> + <span class="string">&quot;</span><span class="string"> please enter your letter:</span><span class="string">&quot;</span>,
+ 60                     Globals.<span class="ST4">title</span>,
+ 61                     JOptionPane.<span class="ST4">INFORMATION_MESSAGE</span>);
+ 62         }
+ 63     }
+ 64 
+ 65     <span class="comment">/**</span>
+ 66 <span class="comment">     * </span><span class="comment">Asks</span> <span class="comment">the</span> <span class="comment">user</span> <span class="comment">for</span> <span class="comment">their</span> <span class="comment">name</span> <span class="comment">and</span> <span class="comment">a</span> <span class="comment">letter</span>
+ 67      <span class="comment">*/</span>
+ 68     <span class="literal">private</span> <span class="literal">static</span> <span class="literal">void</span> <span class="ST2">namesO</span>() {
+ 69 
+ 70         Globals.<span class="ST4">On</span> = JOptionPane.<span class="ST3">showInputDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 71                 <span class="string">&quot;</span><span class="string">Player &#39;O&#39; please enter your name:</span><span class="string">&quot;</span>,
+ 72                 Globals.<span class="ST4">title</span>,
+ 73                 JOptionPane.<span class="ST4">INFORMATION_MESSAGE</span>);
+ 74 
+ 75         <span class="literal">if</span> (Globals.<span class="ST4">On</span>.equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+ 76             JOptionPane.<span class="ST3">showMessageDialog</span>(<span class="literal">n</span><span class="literal">ull</span>, <span class="string">&quot;</span><span class="string">You need to enter a name</span><span class="string">&quot;</span>);
+ 77 
+ 78             Globals.<span class="ST4">On</span> = JOptionPane.<span class="ST3">showInputDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 79                     <span class="string">&quot;</span><span class="string">Player &#39;O&#39; please enter your name:</span><span class="string">&quot;</span>,
+ 80                     Globals.<span class="ST4">title</span>,
+ 81                     JOptionPane.<span class="ST4">INFORMATION_MESSAGE</span>);
+ 82         }
+ 83 
+ 84         Globals.<span class="ST4">Ol</span> = JOptionPane.<span class="ST3">showInputDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 85                 Globals.<span class="ST4">On</span> + <span class="string">&quot;</span><span class="string"> please enter your letter:</span><span class="string">&quot;</span>,
+ 86                 Globals.<span class="ST4">title</span>,
+ 87                 JOptionPane.<span class="ST4">INFORMATION_MESSAGE</span>);
+ 88 
+ 89         <span class="literal">if</span> (Globals.<span class="ST4">Ol</span>.equals(<span class="string">&quot;</span><span class="string">&quot;</span>)) {
+ 90             JOptionPane.<span class="ST3">showMessageDialog</span>(<span class="literal">n</span><span class="literal">ull</span>, <span class="string">&quot;</span><span class="string">You need to enter a letter</span><span class="string">&quot;</span>);
+ 91 
+ 92             Globals.<span class="ST4">On</span> = JOptionPane.<span class="ST3">showInputDialog</span>(<span class="literal">n</span><span class="literal">ull</span>,
+ 93                     Globals.<span class="ST4">On</span> + <span class="string">&quot;</span><span class="string"> please enter your letter:</span><span class="string">&quot;</span>,
+ 94                     Globals.<span class="ST4">title</span>,
+ 95                     JOptionPane.<span class="ST4">INFORMATION_MESSAGE</span>);
+ 96         }
+ 97 
+ 98     }
+ 99 
+100 }
+101 
+</pre></body>
+</html>
